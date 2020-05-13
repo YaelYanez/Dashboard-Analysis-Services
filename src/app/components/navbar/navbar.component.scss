@@ -1,0 +1,39 @@
+$backgroundColor: #000000;
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+  background: transparent;
+  position: absolute;
+  align-items: center;
+  padding: 20px 40px;
+  right: 0;
+
+  a {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 160px;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    outline: none;
+    background-color: #ff375f;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s all;
+    text-decoration: none;
+
+    &:nth-child(2) {
+      margin-left: 20px;
+      background-color: $backgroundColor;
+      border: 2px solid #ff375f;
+    }
+
+    &:hover {
+      box-shadow: 0px 0px 15px 2px #ff375f;
+    }
+  }
+}
