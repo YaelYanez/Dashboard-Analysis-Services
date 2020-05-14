@@ -6,10 +6,14 @@ import { AppComponent } from './layout/app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { BarChartComponent } from './components/charts/bar-chart/bar-chart.component';
 import { PieChartComponent } from './components/charts/pie-chart/pie-chart.component';
+import { BarGraphicPage } from './pages/bar-graphic/bar-graphic.component';
+import { PieGraphicPage } from './pages/pie-graphic/pie-graphic.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    BarGraphicPage,
+    PieGraphicPage,
     NavbarComponent,
     BarChartComponent,
     PieChartComponent,
