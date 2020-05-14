@@ -1,8 +1,8 @@
 .bar-graphic-wrapper {
   height: 100vh;
   display: flex;
-  align-items: flex-end;
   position: relative;
+  align-items: flex-end;
   z-index: 1;
 
   .title {
@@ -14,7 +14,19 @@
     font-weight: bold;
   }
 
-  .char {
+  .char-wrapper {
     width: 100%;
+    height: 85%;
+    display: grid;
+    grid-template-columns: 0.5fr 1.5fr;
+
+    .forms {
+      background-color: #ffff;
+      border-top-right-radius: 50px;
+    }
+
+    .char {
+      align-self: center;
+    }
   }
 }

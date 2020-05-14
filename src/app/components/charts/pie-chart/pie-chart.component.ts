@@ -16,6 +16,21 @@ import {
 export class PieChartComponent {
   public pieChartOptions: ChartOptions = {
     responsive: true,
+    layout: {
+      padding: {
+        left: 20,
+      },
+    },
+    legend: {
+      position: 'left',
+      align: 'center',
+      labels: {
+        padding: 20,
+        fontColor: 'white',
+        fontStyle: 'bold',
+        fontSize: 15,
+      },
+    },
   };
   public pieChartLabels: Label[] = ['SciFi', 'Drama', 'Comedy'];
   public pieChartData: SingleDataSet = [30, 50, 20];

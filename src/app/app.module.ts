@@ -9,6 +9,8 @@ import { PieChartComponent } from './components/charts/pie-chart/pie-chart.compo
 import { BarGraphicPage } from './pages/bar-graphic/bar-graphic.component';
 import { PieGraphicPage } from './pages/pie-graphic/pie-graphic.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,13 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     PieChartComponent,
     NotFoundComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, ChartsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ChartsModule,
+    NgSelectModule,
+    FormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
