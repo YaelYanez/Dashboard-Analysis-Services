@@ -8,6 +8,7 @@ import { BarChartComponent } from './components/charts/bar-chart/bar-chart.compo
 import { PieChartComponent } from './components/charts/pie-chart/pie-chart.component';
 import { BarGraphicPage } from './pages/bar-graphic/bar-graphic.component';
 import { PieGraphicPage } from './pages/pie-graphic/pie-graphic.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { PieGraphicPage } from './pages/pie-graphic/pie-graphic.component';
     NavbarComponent,
     BarChartComponent,
     PieChartComponent,
+    NotFoundComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, ChartsModule],
   providers: [],
