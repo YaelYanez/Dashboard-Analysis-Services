@@ -1,0 +1,14 @@
+<ng-select
+  class="multi-select-custom"
+  [items]="items"
+  [multiple]="multiple"
+  [closeOnSelect]="false"
+  [clearable]="clearable"
+  [searchable]="false"
+  bindLabel="label"
+  bindValue="label"
+  placeholder="{{ placeholder }}"
+  [(ngModel)]="selectedItem"
+  (change)="getSelectedItem()"
+>
+</ng-select>

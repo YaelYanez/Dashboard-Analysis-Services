@@ -1,44 +1,77 @@
 $backgroundColor: #000000;
 
 nav {
-  display: flex;
-  justify-content: flex-end;
-  background: transparent;
-  position: absolute;
-  align-items: center;
-  padding: 20px 40px;
-  right: 0;
-  z-index: 999;
+  height: 100%;
+  background-color: white;
+  border-right: 1px solid #eaeaf1;
+  padding-top: 60px;
+  position: relative;
+
+  .title {
+    color: rgba($color: #000000, $alpha: 0.8);
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 80px;
+  }
 
   a {
-    height: 50px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    width: 160px;
-    font-size: 15px;
-    font-weight: bold;
-    color: white;
-    border: none;
-    outline: none;
-    background-color: #ff375f;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: 0.3s all;
+    padding: 0 20px;
+    margin: 40px 0;
     text-decoration: none;
+    color: #aab2c8;
+    font-weight: 500;
+    transition: 0.2s color, 0.2s font-weight;
 
-    &:nth-child(2) {
-      margin-left: 20px;
-      background-color: $backgroundColor;
-      border: 2px solid #ff375f;
-    }
-
-    &:hover {
-      box-shadow: 0px 0px 15px 2px #ff375f;
+    span {
+      margin-right: 40px;
+      font-size: 30px;
     }
   }
 
   .active {
-    box-shadow: 0px 0px 15px 2px #ff375f;
+    color: #000000;
+    border-right: 2px solid #5e81f4;
+    font-weight: 700 !important;
+
+    span {
+      color: #5e81f4;
+    }
+  }
+
+  .options {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+    height: 150px;
+    width: 85%;
+    background: #f5f5fa;
+    border-radius: 20px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 20px 0;
+
+    span {
+      color: #5e81f4;
+      position: absolute;
+      top: -10px;
+      left: 50%;
+    }
+
+    .logout-button {
+      width: 85%;
+      cursor: pointer;
+      height: 40px;
+      border: none;
+      outline: none;
+      background-color: #5e81f4;
+      color: white;
+      border-radius: 10px;
+      font-weight: 500;
+      font-size: 15px;
+    }
   }
 }

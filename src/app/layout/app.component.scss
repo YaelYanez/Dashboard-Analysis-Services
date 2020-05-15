@@ -1,2 +1,6 @@
-.router-wrapper {
+.main-wrapper {
+  display: grid;
+  grid-template-columns: 0.35fr 1.65fr;
+  height: 100vh;
+  overflow: hidden;
 }

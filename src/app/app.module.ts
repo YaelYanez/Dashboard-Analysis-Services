@@ -11,6 +11,8 @@ import { PieGraphicPage } from './pages/pie-graphic/pie-graphic.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
+import { AppbarComponent } from './components/appbar/appbar.component';
+import { MultiSelectComponent } from './components/selects/multi-select/multi-select.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { FormsModule } from '@angular/forms';
     BarChartComponent,
     PieChartComponent,
     NotFoundComponent,
+    AppbarComponent,
+    MultiSelectComponent,
   ],
   imports: [
     BrowserModule,

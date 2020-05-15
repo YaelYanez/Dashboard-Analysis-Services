@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: 'barGraph', component: BarGraphicPage },
   { path: 'pieGraph', component: PieGraphicPage },
   { path: '', redirectTo: '/barGraph', pathMatch: 'full' },
-  // { path: '**', component: BarGraphicPage },
+  { path: '**', component: BarGraphicPage },
   { path: '**', component: NotFoundComponent },
 ];
 
