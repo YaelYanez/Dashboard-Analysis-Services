@@ -1,9 +1,64 @@
 <div class="bar-graphic-wrapper">
-  <div class="title">Graph Two</div>
+  <div class="title">Top Sales</div>
+
   <div class="char-wrapper">
-    <div class="forms"></div>
-    <div class="char">
-      <app-pie-chart></app-pie-chart>
+    <div class="options">
+      <multi-select
+        (getSelected)="setItems($event, 'dimension')"
+        placeholder="Category"
+        [items]="dimensions"
+        [isDisabled]="false"
+        [isLoading]="dimensions.length > 0 ? false : true"
+      ></multi-select>
+      <multi-select
+        (getSelected)="setItems($event, 'items')"
+        placeholder="Items"
+        [items]="dimensionsRes"
+        [closeOnSelect]="false"
+        [isDisabled]="false"
+        multiple="true"
+        [isDisabled]="selectedDimension ? false : true"
+      ></multi-select>
+      <multi-select
+        (getSelected)="setItems($event, 'year')"
+        placeholder="Year"
+        [items]="years"
+        [isDisabled]="false"
+        [isDisabled]="selectedItems.length > 0 ? false : true"
+      ></multi-select>
+      <multi-select
+        (getSelected)="setItems($event, 'month')"
+        placeholder="Month"
+        [items]="months"
+        [isDisabled]="false"
+        [isDisabled]="selectedYear ? false : true"
+      ></multi-select>
     </div>
+
+    <ng-container
+      *ngIf="
+        selectedDimension && selectedItems.length > 0;
+        else noItemsSelected
+      "
+    >
+      <div class="char">
+        <app-pie-chart
+          [pieChartData]="pieChartData"
+          [pieChartLabels]="pieChartLabels"
+        ></app-pie-chart>
+      </div>
+    </ng-container>
+
+    <ng-template #noItemsSelected>
+      <div class="noItems">
+        <div class="content-wrapper">
+          <h1>No items selected!</h1>
+          <p>
+            Please, select {{ !selectedDimension ? "a category and" : " " }}
+            {{ selectedItems.length < 0 ? " " : " some items" }} to start
+          </p>
+        </div>
+      </div>
+    </ng-template>
   </div>
 </div>

@@ -6,9 +6,18 @@
   padding: 0;
 
   .ng-select-container {
+    position: relative;
+
     .ng-placeholder {
       color: rgba(0, 0, 0, 0.8);
       font-weight: 600;
+    }
+
+    .ng-spinner-loader {
+      position: absolute;
+      right: 30px;
+      top: 45%;
+      transform: translateY(-50%);
     }
 
     .ng-value {

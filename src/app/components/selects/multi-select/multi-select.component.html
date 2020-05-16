@@ -11,5 +11,6 @@
   placeholder="{{ placeholder }}"
   [(ngModel)]="selectedItem"
   (change)="getSelectedItem()"
+  [loading]="isLoading"
 >
 </ng-select>

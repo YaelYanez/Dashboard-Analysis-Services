@@ -12,6 +12,7 @@ export class MultiSelectComponent {
   @Input() closeOnSelect: boolean = true;
   @Input() isDisabled: boolean = false;
   @Input() items: object[];
+  @Input() isLoading: boolean = false;
   @Output() getSelected: EventEmitter<string> = new EventEmitter();
 
   selectedItem: string;

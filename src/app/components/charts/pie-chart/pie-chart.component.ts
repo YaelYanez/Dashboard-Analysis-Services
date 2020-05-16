@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ChartType, ChartOptions } from 'chart.js';
 import {
   SingleDataSet,
@@ -14,33 +14,44 @@ import {
   styleUrls: ['./pie-chart.component.scss'],
 })
 export class PieChartComponent {
-  public pieChartOptions: ChartOptions = {
+  @Input() pieChartLabels: Label[];
+  @Input() pieChartData: SingleDataSet;
+  pieChartOptions: ChartOptions = {
     responsive: true,
+    aspectRatio: 1.5,
+    cutoutPercentage: 95,
     layout: {
       padding: {
-        left: 20,
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
       },
     },
+    animation: {
+      animateRotate: true,
+      animateScale: true,
+    },
     legend: {
-      position: 'left',
-      align: 'center',
+      position: 'bottom',
       labels: {
+        fontFamily: '"Muli", sans-serif',
+        fontColor: '#A2A3C3',
+        fontSize: 13,
         padding: 20,
-        fontColor: 'white',
-        fontStyle: 'bold',
-        fontSize: 15,
+        boxWidth: 20,
       },
     },
   };
-  public pieChartLabels: Label[] = ['SciFi', 'Drama', 'Comedy'];
-  public pieChartData: SingleDataSet = [30, 50, 20];
-  public pieChartType: ChartType = 'pie';
-  public pieChartLegend = true;
-  public pieChartPlugins = [];
-  public pieChartColors: Colors[] = [
+  pieChartType: ChartType = 'doughnut';
+  pieChartLegend = true;
+  pieChartPlugins = [];
+  pieChartColors: Colors[] = [
     {
-      backgroundColor: ['#007bff', '#5856d6', '#af52de'],
+      backgroundColor: ['#4D4CAC', '#FF606D', '#5E81F4'],
       borderColor: 'white',
+      borderWidth: 4,
+      hoverBorderWidth: 0,
     },
   ];
 
