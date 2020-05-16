@@ -9,6 +9,8 @@ export class MultiSelectComponent {
   @Input() placeholder: string = '';
   @Input() multiple: boolean = false;
   @Input() clearable: boolean = false;
+  @Input() closeOnSelect: boolean = true;
+  @Input() isDisabled: boolean = false;
   @Input() items: object[];
   @Output() getSelected: EventEmitter<string> = new EventEmitter();
 

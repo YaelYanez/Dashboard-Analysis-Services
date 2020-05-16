@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label, Colors } from 'ng2-charts';
 
@@ -8,6 +8,9 @@ import { Label, Colors } from 'ng2-charts';
   styleUrls: ['./bar-chart.component.scss'],
 })
 export class BarChartComponent {
+  @Input() barChartData: ChartDataSets[];
+  @Input() barChartLabels: Label[];
+
   barChartType: ChartType = 'bar';
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -34,6 +37,7 @@ export class BarChartComponent {
     scales: {
       xAxes: [
         {
+          //@ts-ignore
           barPercentage: 0.3,
           categoryPercentage: 0.5,
           gridLines: {
@@ -68,33 +72,5 @@ export class BarChartComponent {
     { backgroundColor: '#4D4CAC' },
     { backgroundColor: '#FF606D' },
     { backgroundColor: '#5E81F4' },
-  ];
-  barChartData: ChartDataSets[] = [
-    {
-      data: [45, 70, 37, 46, 33, 45, 37, 60, 60, 70, 46, 33],
-      label: 'Best Fruits',
-    },
-    {
-      data: [23, 37, 60, 70, 46, 33, 45, 37, 60, 70, 46, 33],
-      label: 'Worst Fruits',
-    },
-    {
-      data: [12, 60, 70, 46, 33, 37, 60, 70, 46, 33, 45, 37],
-      label: 'Kind da good Fruits',
-    },
-  ];
-  barChartLabels: Label[] = [
-    'Apple',
-    'Banana',
-    'Kiwifruit',
-    'Blueberry',
-    'Orange',
-    'Grapes',
-    'Apple',
-    'Banana',
-    'Kiwifruit',
-    'Blueberry',
-    'Orange',
-    'Grapes',
   ];
 }

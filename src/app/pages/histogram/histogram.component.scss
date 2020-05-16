@@ -20,7 +20,7 @@
     padding: 0 30px;
     padding-bottom: 10px;
     display: grid;
-    grid-template-columns: 0.2fr 1fr 0.2fr 0.2fr;
+    grid-template-columns: 0.2fr 1fr 0.15fr 0.15fr;
     column-gap: 30px;
     align-items: center;
   }
@@ -30,5 +30,26 @@
     padding: 50px 50px 30px 50px;
     border-radius: 20px;
     width: 100%;
+  }
+
+  .noItems {
+    height: 610px;
+    padding: 50px 50px 30px 50px;
+    border-radius: 20px;
+    background-color: #f7e5e9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      color: #fe606f;
+      text-align: center;
+    }
+
+    p {
+      color: black;
+      margin-top: 20px;
+      font-weight: 300;
+    }
   }
 }

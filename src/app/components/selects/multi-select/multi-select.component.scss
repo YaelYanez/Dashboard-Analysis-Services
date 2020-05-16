@@ -64,3 +64,16 @@
     bottom: 2px !important;
   }
 }
+
+.ng-select-disabled ::ng-deep {
+  .ng-select-container {
+    .ng-placeholder {
+      color: rgba(0, 0, 0, 0.2) !important;
+      font-weight: 600;
+    }
+
+    .ng-arrow {
+      color: rgba(0, 0, 0, 0.2) !important;
+    }
+  }
+}
