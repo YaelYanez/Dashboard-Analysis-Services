@@ -7,7 +7,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { BarChartComponent } from './components/charts/bar-chart/bar-chart.component';
 import { PieChartComponent } from './components/charts/pie-chart/pie-chart.component';
 import { HistogramPage } from './pages/histogram/histogram.component';
-import { PieGraphicPage } from './pages/pie-graphic/pie-graphic.component';
+import { TopSalesPage } from './pages/top-sales/top-sales.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
@@ -17,7 +17,7 @@ import { MultiSelectComponent } from './components/selects/multi-select/multi-se
   declarations: [
     AppComponent,
     HistogramPage,
-    PieGraphicPage,
+    TopSalesPage,
     NavbarComponent,
     BarChartComponent,
     PieChartComponent,
