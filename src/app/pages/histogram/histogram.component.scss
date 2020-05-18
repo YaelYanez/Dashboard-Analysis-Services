@@ -27,9 +27,18 @@
 
   .char {
     background-color: white;
-    padding: 50px 50px 30px 50px;
+    padding: 90px 50px 30px 50px;
     border-radius: 20px;
     width: 100%;
+    position: relative;
+
+    h2 {
+      color: rgba($color: #000000, $alpha: 0.8);
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      font-size: 20px;
+    }
   }
 
   .noItems {
@@ -50,6 +59,21 @@
       color: black;
       margin-top: 20px;
       font-weight: 300;
+      text-align: center;
+    }
+  }
+
+  .isLoading {
+    height: 610px;
+    padding: 50px 50px 30px 50px;
+    border-radius: 20px;
+    background-color: #f7e5e9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      color: rgba($color: #000000, $alpha: 0.8);
       text-align: center;
     }
   }

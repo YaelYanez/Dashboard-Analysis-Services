@@ -30,7 +30,7 @@ export class DashboardComponent implements OnInit {
     this.barChartLabels = this.barChartLabels.slice(0, 10);
 
     this.barChartData = barRes[Object.keys(barRes)[0]];
-    this.barChartData = this.barChartData.forEach((obj, index) => {
+    this.barChartData = this.barChartData.forEach((index: number) => {
       this[index].data = this[index].data.slice(0, 10);
     });
   }

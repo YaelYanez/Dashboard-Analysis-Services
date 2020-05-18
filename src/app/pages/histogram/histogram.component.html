@@ -39,13 +39,25 @@
   </div>
 
   <ng-container *ngIf="selectedDimension; else noCategorySelected">
-    <ng-container *ngIf="selectedItems.length > 0; else noItemSelected">
-      <div class="char">
-        <app-bar-chart
-          [barChartData]="barChartData"
-          [barChartLabels]="barChartLabels"
-        ></app-bar-chart>
-      </div>
+    <ng-container *ngIf="!isContentLoading; else loading">
+      <ng-container *ngIf="dimensionItems.length > 0; else noItemSelected">
+        <div class="char">
+          <h2>
+            Top {{ getDimensionTranslation().toLowerCase() }}s sales
+            {{
+              selectedYear
+                ? selectedMonth
+                  ? "on " + [selectedMonth] + " " + [selectedYear]
+                  : "on " + [selectedYear]
+                : ""
+            }}
+          </h2>
+          <app-bar-chart
+            [barChartData]="barChartData"
+            [barChartLabels]="barChartLabels"
+          ></app-bar-chart>
+        </div>
+      </ng-container>
     </ng-container>
   </ng-container>
 
@@ -56,6 +68,14 @@
         <p>
           Please, select a category to start
         </p>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #loading>
+    <div class="isLoading">
+      <div class="content-wrapper">
+        <h1>loading...</h1>
       </div>
     </div>
   </ng-template>

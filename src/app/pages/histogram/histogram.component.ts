@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets } from 'chart.js';
-import { Label } from 'ng2-charts';
 import { NorthwindService } from 'src/app/services/northwind.service';
 import * as helpers from '../../helpers/helpers';
 
@@ -26,6 +25,8 @@ export class HistogramPage implements OnInit {
   selectedYear: string = '';
   selectedMonth: string;
 
+  isContentLoading: boolean = false;
+
   barChartData: ChartDataSets[] = [];
   barChartLabels: object[];
 
@@ -38,6 +39,8 @@ export class HistogramPage implements OnInit {
   setItems(data: any, type: string) {
     if (type === 'dimension') {
       this.selectedDimension = data;
+
+      if (data !== null) this.selectedItems = [];
       this.getTopSales();
     }
     if (type === 'year') {
@@ -71,9 +74,12 @@ export class HistogramPage implements OnInit {
       '',
     ];
 
+    this.isContentLoading = true;
+
     const res = await this.north.getDimensionItems(body);
 
     this.dimensionItems = res;
+    this.isContentLoading = false;
   }
 
   async getTopSales() {
