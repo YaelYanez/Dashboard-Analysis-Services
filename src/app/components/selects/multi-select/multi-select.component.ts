@@ -13,13 +13,13 @@ export class MultiSelectComponent {
   @Input() isDisabled: boolean = false;
   @Input() items: object[];
   @Input() isLoading: boolean = false;
+  @Input() selectedItems: string;
+  @Input() customClass: string = 'WOOOOOOOOORKS';
   @Output() getSelected: EventEmitter<string> = new EventEmitter();
+  @Output() getItemRemoved: EventEmitter<object> = new EventEmitter();
+  @Output() getAddedItem: EventEmitter<string> = new EventEmitter();
 
-  selectedItem: string;
-
-  constructor() {}
-
-  test = () => console.log('test');
-
-  getSelectedItem = () => this.getSelected.emit(this.selectedItem);
+  onChange = () => this.getSelected.emit(this.selectedItems);
+  onRemove = (itemRemoved: object) => this.getItemRemoved.emit(itemRemoved);
+  onAdded = (itemAdded: string) => this.getAddedItem.emit(itemAdded);
 }

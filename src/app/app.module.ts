@@ -12,6 +12,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 import { MultiSelectComponent } from './components/selects/multi-select/multi-select.component';
+import { HttpClientModule } from '@angular/common/http';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -23,10 +25,12 @@ import { MultiSelectComponent } from './components/selects/multi-select/multi-se
     PieChartComponent,
     NotFoundComponent,
     MultiSelectComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     ChartsModule,
     NgSelectModule,
     FormsModule,

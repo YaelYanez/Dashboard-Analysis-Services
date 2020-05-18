@@ -1,16 +1,15 @@
 <ng-select
-  class="multi-select-custom"
+  class="multi-select-custom {{ customClass }}"
   [items]="items"
   [multiple]="multiple"
   [closeOnSelect]="closeOnSelect"
   [clearable]="clearable"
   [searchable]="false"
-  bindLabel="label"
   [disabled]="isDisabled"
-  bindValue="label"
   placeholder="{{ placeholder }}"
-  [(ngModel)]="selectedItem"
-  (change)="getSelectedItem()"
-  [loading]="isLoading"
+  [(ngModel)]="selectedItems"
+  (change)="onChange()"
+  (remove)="onRemove($event)"
+  (add)="onAdded($event)"
 >
 </ng-select>

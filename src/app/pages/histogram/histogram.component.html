@@ -3,52 +3,67 @@
   <div class="options">
     <multi-select
       (getSelected)="setItems($event, 'dimension')"
-      placeholder="Dimension"
+      placeholder="Category"
       [items]="dimensions"
-      [isDisabled]="false"
+      [isLoading]="dimensions.length > 0 ? false : true"
+    ></multi-select>
+
+    <multi-select
+      (getSelected)="setItems($event, 'year')"
+      placeholder="Year"
+      [items]="years"
+      [clearable]="true"
+      [isDisabled]="selectedDimension !== '' ? false : true"
+    ></multi-select>
+    <multi-select
+      (getSelected)="setItems($event, 'month')"
+      placeholder="Month"
+      [items]="months"
+      [clearable]="true"
+      [(selectedItems)]="selectedMonth"
+      [isDisabled]="
+        selectedDimension !== '' && selectedYear !== '' ? false : true
+      "
     ></multi-select>
     <multi-select
       (getSelected)="setItems($event, 'items')"
       placeholder="Items"
+      [items]="dimensionItems"
       [closeOnSelect]="false"
       multiple="true"
-      clearable="true"
-      [items]="dimensionsRes"
       [isDisabled]="selectedDimension ? false : true"
-    ></multi-select>
-    <multi-select
-      (getSelected)="setItems($event, 'year')"
-      [items]="years"
-      placeholder="Year"
-      [isDisabled]="selectedItems.length > 0 ? false : true"
-    ></multi-select>
-    <multi-select
-      (getSelected)="setItems($event, 'month')"
-      [items]="months"
-      placeholder="Month"
-      [isDisabled]="selectedYear ? false : true"
+      [(selectedItems)]="selectedItems"
+      [clearable]="true"
+      customClass="too-many-items-type"
     ></multi-select>
   </div>
 
-  <ng-container
-    *ngIf="selectedDimension && selectedItems.length > 0; else noItemsSelected"
-  >
-    <div class="char">
-      <app-bar-chart
-        [barChartData]="barChartData"
-        [barChartLabels]="barChartLabels"
-      ></app-bar-chart>
-    </div>
+  <ng-container *ngIf="selectedDimension; else noCategorySelected">
+    <ng-container *ngIf="selectedItems.length > 0; else noItemSelected">
+      <div class="char">
+        <app-bar-chart
+          [barChartData]="barChartData"
+          [barChartLabels]="barChartLabels"
+        ></app-bar-chart>
+      </div>
+    </ng-container>
   </ng-container>
 
-  <ng-template #noItemsSelected>
+  <ng-template #noCategorySelected>
     <div class="noItems">
       <div class="content-wrapper">
-        <h1>No items selected!</h1>
+        <h1>No category selected!</h1>
         <p>
-          Please, select {{ !selectedDimension ? "a dimension and" : " " }}
-          {{ selectedItems.length < 0 ? " " : " some items" }} to start
+          Please, select a category to start
         </p>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #noItemSelected>
+    <div class="noItems">
+      <div class="content-wrapper">
+        <h1>No sales found for {{ getDimensionTranslation() }}s!</h1>
       </div>
     </div>
   </ng-template>

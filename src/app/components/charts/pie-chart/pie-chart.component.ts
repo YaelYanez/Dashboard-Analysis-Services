@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ChartType, ChartOptions } from 'chart.js';
 import {
   SingleDataSet,
@@ -13,13 +13,26 @@ import {
   templateUrl: './pie-chart.component.html',
   styleUrls: ['./pie-chart.component.scss'],
 })
-export class PieChartComponent {
+export class PieChartComponent implements OnInit {
   @Input() pieChartLabels: Label[];
   @Input() pieChartData: SingleDataSet;
+  @Input() cutoutPercentage: number = 94;
+
+  pieChartType: ChartType = 'doughnut';
+  pieChartLegend = true;
+  pieChartColors: Colors[] = [
+    {
+      backgroundColor: ['#4D4CAC', '#FF606D', '#5E81F4', '#F4D35E', '#EE964B'],
+      borderColor: 'white',
+      borderWidth: 4,
+      hoverBorderWidth: 0,
+    },
+  ];
+  pieChartPlugins = [];
   pieChartOptions: ChartOptions = {
     responsive: true,
     aspectRatio: 1.5,
-    cutoutPercentage: 95,
+    cutoutPercentage: this.cutoutPercentage,
     layout: {
       padding: {
         top: 0,
@@ -43,20 +56,13 @@ export class PieChartComponent {
       },
     },
   };
-  pieChartType: ChartType = 'doughnut';
-  pieChartLegend = true;
-  pieChartPlugins = [];
-  pieChartColors: Colors[] = [
-    {
-      backgroundColor: ['#4D4CAC', '#FF606D', '#5E81F4'],
-      borderColor: 'white',
-      borderWidth: 4,
-      hoverBorderWidth: 0,
-    },
-  ];
 
   constructor() {
     monkeyPatchChartJsTooltip();
     monkeyPatchChartJsLegend();
+  }
+
+  ngOnInit(): void {
+    this.pieChartOptions.cutoutPercentage = this.cutoutPercentage;
   }
 }

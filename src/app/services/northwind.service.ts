@@ -1,50 +1,66 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
-const URL_API = 'environment.API.EndPoint.Northwind';
+const URL_API = environment.API.EndPoint.Northwind;
 
 @Injectable({
   providedIn: 'root',
 })
 export class NorthwindService {
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  getDimensions() {
+  getDimensions = (): Promise<object[]> => {
     return new Promise((resolve) => {
-      setTimeout(
-        () =>
-          resolve([
-            { value: 1, label: 'Cliente' },
-            { value: 2, label: 'Empleados' },
-          ]),
-        1000
-      );
+      this.http
+        .get(`${URL_API}GetDimensions`)
+        .toPromise()
+        .then((res: object[]) => resolve(res));
     });
-  }
+  };
 
-  getDimensionItems = (dimension: string) => [
-    { value: 1, label: 'SciFi', sales: 30 },
-    { value: 2, label: 'Drama', sales: 50 },
-    { value: 3, label: 'Comedy', sales: 20 },
-  ];
+  getDimensionYears = (): Promise<object[]> => {
+    return new Promise((resolve) => {
+      this.http
+        .get(`${URL_API}GetDimensionYears`)
+        .toPromise()
+        .then((res: object[]) => resolve(res));
+    });
+  };
 
-  getDimensionYears = (dimension: string) => [
-    { value: 1, label: 1997 },
-    { value: 2, label: 1998 },
-    { value: 3, label: 1999 },
-  ];
+  getDimensionYearsMonths = (): Promise<object[]> => {
+    return new Promise((resolve) => {
+      this.http
+        .get(`${URL_API}GetDimensionYearsMonths`)
+        .toPromise()
+        .then((res: object[]) => resolve(res));
+    });
+  };
 
-  getDimensionYearsMonths = (dimension: string, year: number) => [
-    { value: 1, label: 'Jan' },
-    { value: 2, label: 'Feb' },
-    { value: 3, label: 'Mar' },
-  ];
+  getDimensionItems = (body: string[]): Promise<object[]> => {
+    return new Promise((resolve) => {
+      this.http
+        .post(`${URL_API}GetDimensionsItems`, body)
+        .toPromise()
+        .then((res: object[]) => resolve(res));
+    });
+  };
 
-  // getTop5 = (dimension: string, year: number, month: number) => {
-  //   this.http.post(`${URL_API}elMetodo/`, {
-  //     dimension: 'Cliente',
-  //     year: 1999,
-  //     month: 2,
-  //   });
-  // };
+  getTopSales = (body: string[]): Promise<object[]> => {
+    return new Promise((resolve) => {
+      this.http
+        .post(`${URL_API}GetTop5Pie`, body)
+        .toPromise()
+        .then((res: object[]) => resolve(res));
+    });
+  };
+
+  getHistogram = (body: any): Promise<object[]> => {
+    return new Promise((resolve) => {
+      this.http
+        .post(`${URL_API}GetHistogram`, body)
+        .toPromise()
+        .then((res: object[]) => resolve(res));
+    });
+  };
 }

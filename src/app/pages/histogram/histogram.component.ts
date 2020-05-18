@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
+import { NorthwindService } from 'src/app/services/northwind.service';
+import * as helpers from '../../helpers/helpers';
 
 @Component({
   selector: 'histogram-page',
@@ -8,62 +10,103 @@ import { Label } from 'ng2-charts';
   styleUrls: ['./histogram.component.scss'],
 })
 export class HistogramPage implements OnInit {
-  selectedDimension: string;
-  selectedItems: string[] = new Array<string>();
-  selectedYear: number;
+  constructor(private north: NorthwindService) {}
+
+  helpers = helpers;
+
+  // Selects Data
+  dimensions: object[] = new Array<object>();
+  dimensionItems: object[] = new Array<object>();
+  years: object[] = new Array<object>();
+  months: object[] = new Array<object>();
+
+  // Class Data
+  selectedDimension: string = '';
+  selectedItems: object[] = new Array<object>();
+  selectedYear: string = '';
   selectedMonth: string;
 
-  dimensions: object[] = [
-    { value: 1, label: 'Cliente' },
-    { value: 2, label: 'Empleados' },
-  ];
+  barChartData: ChartDataSets[] = [];
+  barChartLabels: object[];
 
-  dimensionsRes: object[] = [
-    { value: 1, label: 'Yael' },
-    { value: 2, label: 'Derek' },
-    { value: 3, label: 'Victor' },
-    { value: 4, label: 'Franco' },
-  ];
-
-  years: object[] = [
-    { value: 1, label: 1997 },
-    { value: 2, label: 1998 },
-    { value: 3, label: 1999 },
-  ];
-
-  months: object[] = [
-    { value: 1, label: 'Jan' },
-    { value: 2, label: 'Feb' },
-    { value: 3, label: 'Mar' },
-  ];
-
-  barChartData: ChartDataSets[] = [
-    {
-      data: [45, 70, 37, 40],
-      label: '1997',
-    },
-    {
-      data: [23, 37, 60, 50],
-      label: '1998',
-    },
-    {
-      data: [12, 60, 70, 60],
-      label: '1999',
-    },
-  ];
-
-  barChartLabels: Label[];
-
-  ngOnInit() {}
+  async ngOnInit() {
+    this.dimensions = await this.north.getDimensions();
+    this.years = await this.north.getDimensionYears();
+    this.months = await this.north.getDimensionYearsMonths();
+  }
 
   setItems(data: any, type: string) {
-    if (type === 'dimension') this.selectedDimension = data;
-    if (type === 'month') this.selectedMonth = data;
-    if (type === 'year') this.selectedYear = data;
+    if (type === 'dimension') {
+      this.selectedDimension = data;
+      this.getTopSales();
+    }
+    if (type === 'year') {
+      if (data === null) {
+        this.selectedYear = '';
+        this.selectedMonth = null;
+      } else this.selectedYear = data;
 
+      this.selectedItems = [];
+      this.getTopSales();
+    }
+    if (type === 'month') {
+      if (data === null) {
+        this.selectedMonth = null;
+      } else this.selectedMonth = data;
+
+      this.selectedItems = [];
+      this.getTopSales();
+    }
     if (type === 'items') {
       this.selectedItems = data;
-      this.barChartLabels = data;
+      if (this.selectedItems.length > 0) this.getTopSales();
     }
   }
+
+  async setDimensionItems() {
+    const body = [
+      this.selectedDimension,
+      this.selectedYear.toString(),
+      helpers.getSelectedMonth(this.selectedMonth).toString(),
+      '',
+    ];
+
+    const res = await this.north.getDimensionItems(body);
+
+    this.dimensionItems = res;
+  }
+
+  async getTopSales() {
+    const body: any = [
+      [
+        this.selectedDimension,
+        this.selectedYear.toString(),
+        helpers.getSelectedMonth(this.selectedMonth).toString(),
+      ],
+      this.selectedItems,
+    ];
+
+    const res: object[] = await this.north.getHistogram(body);
+
+    this.barChartData = res[Object.keys(res)[0]];
+    this.barChartLabels = res[Object.keys(res)[1]];
+
+    this.selectedItems = res[Object.keys(res)[1]];
+
+    if (this.selectedMonth) {
+      this.barChartData.forEach((item) => {
+        item.label = helpers
+          .getSelectedMonthFromYearIndex(Number(item.label))
+          .toUpperCase();
+      });
+    }
+
+    this.setDimensionItems();
+  }
+
+  getDimensionTranslation = () => {
+    if (this.selectedDimension === 'Cliente') return 'client';
+    if (this.selectedDimension === 'Empleado') return 'employee';
+    if (this.selectedDimension === 'Producto') return 'product';
+  };
 }
