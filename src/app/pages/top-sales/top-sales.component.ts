@@ -39,20 +39,21 @@ export class TopSalesPage implements OnInit {
   }
 
   async setItems(data: any, type: string) {
-    if (type === 'month') {
+    if (type === 'dimension') {
       this.totalSales = 0;
-      this.selectedMonth = data;
+      this.selectedDimension = data;
     }
     if (type === 'year') {
       this.totalSales = 0;
       this.selectedYear = data;
     }
-    if (type === 'dimension') {
+    if (type === 'month') {
       this.totalSales = 0;
-      this.selectedDimension = data;
+      this.selectedMonth = data;
     }
-    if (type === 'items') this.handleItems(data);
-    else this.getTopSales();
+    if (type === 'items') {
+      this.handleItems(data);
+    } else this.getTopSales();
   }
 
   async setDimensionItems() {
@@ -80,6 +81,8 @@ export class TopSalesPage implements OnInit {
 
       this.totalSales += element.data;
     });
+
+    console.log(this.pieChartData);
   }
 
   getItemRemoved(itemRemoved: { label: string }) {
@@ -109,6 +112,7 @@ export class TopSalesPage implements OnInit {
 
     this.pieChartData.forEach((sale) => (this.totalSales += sale));
 
+    this.allData = [];
     this.pieChartLabels.forEach((item, index) => {
       this.allData.push({ label: item, data: this.pieChartData[index] });
     });
