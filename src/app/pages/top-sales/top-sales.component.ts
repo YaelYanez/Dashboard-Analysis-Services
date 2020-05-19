@@ -81,8 +81,6 @@ export class TopSalesPage implements OnInit {
 
       this.totalSales += element.data;
     });
-
-    console.log(this.pieChartData);
   }
 
   getItemRemoved(itemRemoved: { label: string }) {
