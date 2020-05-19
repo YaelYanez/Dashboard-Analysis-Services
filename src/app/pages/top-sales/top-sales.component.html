@@ -1,0 +1,89 @@
+<div class="bar-graphic-wrapper">
+  <div class="title">Top Sales</div>
+
+  <div class="char-wrapper">
+    <div class="options">
+      <multi-select
+        (getSelected)="setItems($event, 'dimension')"
+        placeholder="Category"
+        [items]="dimensions"
+        [isLoading]="dimensions.length > 0 ? false : true"
+      ></multi-select>
+      <multi-select
+        (getSelected)="setItems($event, 'year')"
+        placeholder="Year"
+        [items]="years"
+        [isDisabled]="selectedDimension !== '' ? false : true"
+      ></multi-select>
+      <multi-select
+        (getSelected)="setItems($event, 'month')"
+        placeholder="Month"
+        [items]="months"
+        [isDisabled]="
+          selectedDimension !== '' && selectedYear !== '' ? false : true
+        "
+      ></multi-select>
+      <multi-select
+        (getSelected)="setItems($event, 'items')"
+        placeholder="Items"
+        [items]="dimensionItems"
+        [closeOnSelect]="false"
+        multiple="true"
+        [isDisabled]="selectedDimension !== '' ? false : true"
+        [(selectedItems)]="selectedItems"
+        (getItemRemoved)="getItemRemoved($event)"
+        (getAddedItem)="getAddedItem($event)"
+      ></multi-select>
+    </div>
+
+    <ng-container *ngIf="selectedDimension !== ''; else noItemsSelected">
+      <ng-container
+        *ngIf="
+          pieChartData.length > 0 && dimensionItems.length > 0;
+          else noItemsFound
+        "
+      >
+        <div class="char">
+          <h2>
+            Top {{ getDimensionTranslation().toLowerCase() }}s sales
+            {{
+              selectedYear
+                ? selectedMonth
+                  ? "on " + [selectedMonth] + " " + [selectedYear]
+                  : "on " + [selectedYear]
+                : ""
+            }}
+          </h2>
+          <app-pie-chart
+            [pieChartData]="pieChartData"
+            [pieChartLabels]="pieChartLabels"
+          ></app-pie-chart>
+          <div class="total-sales-wrapper">
+            <h1>Total sales</h1>
+            <p>{{ helpers.fromNumberToMoney(totalSales) }}</p>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-template #noItemsFound>
+        <div class="noItems">
+          <div class="content-wrapper">
+            <h1>No sales found for {{ getDimensionTranslation() }}s!</h1>
+          </div>
+        </div>
+      </ng-template>
+    </ng-container>
+
+    <ng-template #noItemsSelected>
+      <div class="noItems">
+        <div class="content-wrapper">
+          <h1>No category selected!</h1>
+          <p>
+            Please, select {{ !selectedDimension ? "a category" : " " }} to
+            start
+          </p>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>
