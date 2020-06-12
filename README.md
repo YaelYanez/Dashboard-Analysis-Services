@@ -1,5 +1,7 @@
 # Analysis Services Dashboard
 
+Frontend app connected to an Analysis Service Cube Project REST API.
+
 ![Dashboard](https://github.com/YaelYanez/Dashboard-Analysis-Services/blob/master/git-images/dashboard.png)
 
 
