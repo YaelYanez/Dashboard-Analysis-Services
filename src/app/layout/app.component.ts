@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
   title = 'cube-dashboard-Parcial2do';
 
   async ngOnInit() {
-    const res = await axios.get('http://apis.northwind.com/test');
+    const res = await axios.get('/test');
     console.log(res);
   }
 }
