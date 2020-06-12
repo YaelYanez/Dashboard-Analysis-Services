@@ -1,6 +1,6 @@
 # Analysis Services Dashboard
 
-![alt text](http://url/to/img.png)
+![Dashboard](https://github.com/YaelYanez/Dashboard-Analysis-Services/blob/master/git-images/dashboard.png)
 
 ## Development server
 
