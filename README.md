@@ -1,6 +1,6 @@
 # Analysis Services Dashboard
+Angular frontend app connected to an Analysis Service Cube Project REST API.
 
-Frontend app connected to an Analysis Service Cube Project REST API.
 
 ![Dashboard](https://github.com/YaelYanez/Dashboard-Analysis-Services/blob/master/git-images/dashboard.png)
 
