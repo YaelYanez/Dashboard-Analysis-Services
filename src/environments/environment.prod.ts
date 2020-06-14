@@ -2,7 +2,8 @@ export const environment = {
   production: true,
   API: {
     EndPoint: {
-      Northwind: 'http://192.168.1.73/API.NorthwindCube/Northwind/v1/',
+      Northwind: 'http://localhost:64588/Northwind/v1/',
+      Login: 'http://localhost:3000/api/auth',
     },
   },
 };
