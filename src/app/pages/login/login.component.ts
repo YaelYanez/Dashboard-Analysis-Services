@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   async Login(username, password){
     const body: any = {username, password};
     var response: object[] = await this.login.login(body);
-    const {ok} = response;
+    var ok : boolean = response;
     if(ok){   
     localStorage.setItem('token',response[Object.keys(response)[2]])
     const decoded = jwt_decode(localStorage.getItem('token'))
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     localStorage.setItem('loginStatus',"true");
     location.href = ('dashboard')
     }else{
-      const{msg} = response.error
+      const msg : string= response.error
       this.msg1 = msg
     }
     
