@@ -29,6 +29,7 @@ import { AuthGuard } from './auth.guard';
     NotFoundComponent,
     MultiSelectComponent,
     DashboardComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

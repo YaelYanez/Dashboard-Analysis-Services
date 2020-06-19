@@ -21,6 +21,7 @@
     "@angular/router": "~9.1.1",
     "@ng-select/ng-select": "^4.0.0",
     "@types/axios": "^0.14.0",
+    "axios": "^0.19.2",
     "chart.js": "^2.9.3",
     "jwt-decode": "^2.2.0",
     "ng2-charts": "^2.3.1",

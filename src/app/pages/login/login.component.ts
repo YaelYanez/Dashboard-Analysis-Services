@@ -3,13 +3,11 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import * as jwt_decode from 'jwt-decode';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-
 
 export class LoginComponent implements OnInit {
   constructor(private login: AuthService){ }
