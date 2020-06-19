@@ -34,11 +34,15 @@ export class HistogramPage implements OnInit {
 
   verifyAccessHistogram() {
     const token = localStorage.getItem('token');
-    const decoded = jwt_decode(token)
-    if (decoded.rol[0] != "ALL") {
-      if (decoded.rol[0] != "HIST") {
-        this.router.navigate(['./topSales'])
-        console.log(decoded.rol[0])
+    const decoded = jwt_decode(token);
+
+    // @ts-ignore
+    if (decoded.rol[0] != 'ALL') {
+      // @ts-ignore
+      if (decoded.rol[0] != 'HIST') {
+        this.router.navigate(['./topSales']);
+        // @ts-ignore
+        console.log(decoded.rol[0]);
       }
     }
   }

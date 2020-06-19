@@ -36,11 +36,14 @@ export class TopSalesPage implements OnInit {
 
   verifyAccessToSales() {
     const token = localStorage.getItem('token');
-    const decoded = jwt_decode(token)
-    if (decoded.rol[0] != "ALL") {
-      if (decoded.rol[0] != "TOP") {
-        this.router.navigate(['./histogram'])
-        console.log(decoded.rol[0])
+    const decoded = jwt_decode(token);
+    //@ts-ignore
+    if (decoded.rol[0] != 'ALL') {
+      //@ts-ignore
+      if (decoded.rol[0] != 'TOP') {
+        this.router.navigate(['./histogram']);
+        //@ts-ignore
+        console.log(decoded.rol[0]);
       }
     }
   }

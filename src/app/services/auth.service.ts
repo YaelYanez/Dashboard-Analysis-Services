@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import * as jwt_decode from 'jwt-decode';
 
-
 const URL_API = environment.API.EndPoint.Login;
 
 @Injectable({
@@ -12,37 +11,36 @@ const URL_API = environment.API.EndPoint.Login;
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  login = (body: string[]): Promise<object[]> => {
+  login = (body: { username: string; password: string }): Promise<object> => {
     return new Promise((resolve) => {
       this.http
         .post(`${URL_API}login`, body)
         .toPromise()
-        .then((res: object[]) => resolve(res)).catch(
-          (res: object[]) => resolve(res)
-        );
+        .then((res: object) => resolve(res))
+        .catch((res: object) => resolve(res));
     });
   };
 
-  checkLoginStatus() : boolean{
+  checkLoginStatus(): boolean {
     const token = localStorage.getItem('token');
-    const decoded = jwt_decode(token)
+    const decoded = jwt_decode(token);
     var loginStatus = localStorage.getItem('loginStatus');
 
-    if(loginStatus == "true"){
-      if(decoded.exp == undefined){
+    if (loginStatus == 'true') {
+      //@ts-ignore
+      if (decoded.exp == undefined) {
         return false;
       }
 
       const date = new Date(0);
-
+      //@ts-ignore
       let tokenExpDate = date.setUTCSeconds(decoded.exp);
 
-      if(tokenExpDate.valueOf() > new Date().valueOf()){
+      if (tokenExpDate.valueOf() > new Date().valueOf()) {
         return true;
       }
-      console.log("Token EXPIRED");
+      console.log('Token EXPIRED');
     }
     return false;
   }
- 
 }
