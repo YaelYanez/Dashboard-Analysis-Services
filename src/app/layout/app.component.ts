@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import axios from 'axios';
 
 @Component({
@@ -6,11 +6,9 @@ import axios from 'axios';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'cube-dashboard-Parcial2do';
-
-  async ngOnInit() {
-    const res = await axios.get('http://192.168.1.67:3000/test');
-    console.log(res);
-  }
+  loginStatus: boolean = (localStorage.getItem('loginStatus') == "true") ? true : false;
 }
+
+

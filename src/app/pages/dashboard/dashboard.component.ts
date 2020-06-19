@@ -2,14 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { NorthwindService } from 'src/app/services/northwind.service';
 import { Label } from 'ng2-charts';
 import { ChartDataSets } from 'chart.js';
+import * as jwt_decode from 'jwt-decode';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
+  styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  constructor(private north: NorthwindService) {}
+  constructor(private north: NorthwindService, private router: Router) { }
+
 
   pieChartLabels: Label[] = new Array<string>();
   pieChartData: Array<number> = new Array<number>();
@@ -17,7 +21,26 @@ export class DashboardComponent implements OnInit {
   barChartData: any = [];
   barChartLabels: object[];
 
+  flag: boolean = true;
+
+  name: string;
+
+  verifyAccessDashboard() {
+    const token = localStorage.getItem('token');
+    const decoded = jwt_decode(token)
+    console.log(decoded.rol[0])
+    if (decoded.rol[0] != "ALL") {
+      if (decoded.rol[0] == "TOP") {
+        this.router.navigate(['./topSales'])
+      } else {
+        this.router.navigate(['./histogram'])
+      }
+    }
+  }
   async ngOnInit() {
+    this.verifyAccessDashboard();
+    const {fullName} = jwt_decode(localStorage.getItem('token'))
+    this.name = fullName
     const pieBody: any = ['Cliente', '', ''];
     const barBody: any = [['Ciente', '', ''], []];
 
@@ -34,4 +57,6 @@ export class DashboardComponent implements OnInit {
       this[index].data = this[index].data.slice(0, 10);
     });
   }
+
+
 }

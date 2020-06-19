@@ -15,9 +15,11 @@ import { MultiSelectComponent } from './components/selects/multi-select/multi-se
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './pages/login/login.component';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
+    LoginComponent,
     AppComponent,
     HistogramPage,
     TopSalesPage,
@@ -37,7 +39,7 @@ import { LoginComponent } from './pages/login/login.component';
     NgSelectModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
