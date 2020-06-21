@@ -1,23 +1,7 @@
-<ng-container *ngIf="loginStatus; else login">
-  <div class="layout">
-    <div class="main-wrapper">
-      <navbar></navbar>
-      <section>
-        <router-outlet></router-outlet>
-      </section>
-    </div>
+<div class="layout">
+  <div class="main-wrapper">
+    <section>
+      <router-outlet></router-outlet>
+    </section>
   </div>
-</ng-container>
-
-
-<ng-template #login>
-  <div class="layout">
-    <div class="main-wrapper">
-      <section>
-        <router-outlet></router-outlet>
-      </section>
-    </div>
-  </div>
-</ng-template>
-
-
+</div>

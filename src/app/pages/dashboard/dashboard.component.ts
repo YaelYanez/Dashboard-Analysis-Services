@@ -4,6 +4,7 @@ import { Label } from 'ng2-charts';
 import { ChartDataSets } from 'chart.js';
 import * as jwt_decode from 'jwt-decode';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  constructor(private north: NorthwindService, private router: Router) {}
+  constructor(private north: NorthwindService, private router: Router, private login: AuthService) {}
 
   pieChartLabels: Label[] = new Array<string>();
   pieChartData: Array<number> = new Array<number>();
@@ -27,8 +28,6 @@ export class DashboardComponent implements OnInit {
     const token = localStorage.getItem('token');
     const decoded = jwt_decode(token);
     // @ts-ignore
-    console.log(decoded.rol[0]);
-    // @ts-ignore
     if (decoded.rol[0] != 'ALL') {
       // @ts-ignore
       if (decoded.rol[0] == 'TOP') {
@@ -36,6 +35,8 @@ export class DashboardComponent implements OnInit {
       } else {
         this.router.navigate(['./histogram']);
       }
+    }else if(!this.login.checkLoginStatus()){
+      location.href = 'login'
     }
   }
   async ngOnInit() {

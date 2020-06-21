@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import * as jwt_decode from 'jwt-decode';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,13 +9,18 @@ import * as jwt_decode from 'jwt-decode';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private login: AuthService) {}
+  constructor(private login: AuthService, private router: Router) {}
 
   msg1: string;
 
   ngOnInit(): void {
-    localStorage.setItem('loginStatus', 'false');
-    localStorage.setItem('token', '');
+
+    if(this.login.checkLoginStatus()){
+      this.router.navigate(['/dashboard'])
+    }else{
+      localStorage.setItem('loginStatus', 'false');
+      localStorage.setItem('token', '');
+    } 
   }
 
   async Login(username, password) {
@@ -23,17 +29,18 @@ export class LoginComponent implements OnInit {
 
     //@ts-ignore
     const { ok } = response;
+    //@ts-ignore
+    const{error} = response;
 
     if (ok) {
       localStorage.setItem('token', response[Object.keys(response)[2]]);
       const decoded = jwt_decode(localStorage.getItem('token'));
-      console.log(decoded);
       localStorage.setItem('loginStatus', 'true');
-      location.href = 'dashboard';
+      this.router.navigate(['/dashboard']);
+      
     } else {
       //@ts-ignore
-      const msg: string = response.error;
-      this.msg1 = msg;
+      this.msg1 = error.msg;
     }
   }
 }

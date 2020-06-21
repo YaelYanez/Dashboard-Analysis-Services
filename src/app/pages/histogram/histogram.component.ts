@@ -41,8 +41,6 @@ export class HistogramPage implements OnInit {
       // @ts-ignore
       if (decoded.rol[0] != 'HIST') {
         this.router.navigate(['./topSales']);
-        // @ts-ignore
-        console.log(decoded.rol[0]);
       }
     }
   }

@@ -9,6 +9,11 @@ import axios from 'axios';
 export class AppComponent {
   title = 'cube-dashboard-Parcial2do';
   loginStatus: boolean = (localStorage.getItem('loginStatus') == "true") ? true : false;
+
+  ngOnInit(): void{
+    localStorage.setItem('loginStatus', 'false');
+    localStorage.setItem('token', '');
+  }
 }
 
 

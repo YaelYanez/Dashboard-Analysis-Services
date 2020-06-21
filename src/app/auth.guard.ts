@@ -6,15 +6,14 @@ import {AuthService} from './services/auth.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private _authService: AuthService, private _router: Router){}
+  constructor(private _authService: AuthService, private router: Router){}
   
   canActivate():boolean{
-    if(this._authService.checkLoginStatus()){
-      return true
+    if(!this._authService.checkLoginStatus()){
+      this.router.navigate(['login']);
+      return false;
     }else{
-      localStorage.setItem('token',"")
-      localStorage.setItem('loginStatus',"false")
-      location.href = ('login');
+      return true;
     }
   }
 }
