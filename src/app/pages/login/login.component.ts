@@ -14,13 +14,14 @@ export class LoginComponent implements OnInit {
   msg1: string;
 
   ngOnInit(): void {
-
-    if(this.login.checkLoginStatus()){
-      this.router.navigate(['/dashboard'])
-    }else{
-      localStorage.setItem('loginStatus', 'false');
-      localStorage.setItem('token', '');
-    } 
+    if(localStorage.getItem('token').length != 0){
+      if(this.login.checkLoginStatus()){
+        this.router.navigate(['/dashboard'])
+      }else{
+        localStorage.setItem('loginStatus', 'false');
+        localStorage.setItem('token', '');
+      } 
+    }
   }
 
   async Login(username, password) {
