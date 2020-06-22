@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
         this.router.navigate(['./histogram']);
       }
     }else if(!this.login.checkLoginStatus()){
-      location.href = 'login'
+      this.router.navigate(['login'])
     }
   }
   async ngOnInit() {
