@@ -16,6 +16,6 @@ export class NavbarComponent implements OnInit {
   Logout(){
     localStorage.setItem('token','');
     localStorage.setItem('loginStatus', 'false');
-    location.href = ('login')
+    this._router.navigate(['login'])
   }
 }

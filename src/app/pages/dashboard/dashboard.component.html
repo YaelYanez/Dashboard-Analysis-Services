@@ -1,33 +1,30 @@
-<div class="dashboard-wrapper">
-  <div class="info-wrapper section">
-    <div class="info">
-      <h1>Welcome back, {{name}}</h1>
-      <p>Here you will find a short resume of your graphs.</p>
-    </div>
-  </div>
-  <div class="top-sales-wrapper section">
-    <div class="content">
-      <h2>Top clients sales</h2>
-      <div class="chart">
-        <app-pie-chart
-          [pieChartData]="pieChartData"
-          [pieChartLabels]="pieChartLabels"
-          cutoutPercentage="0"
-        ></app-pie-chart>
+<div class="layout-dashboard">
+  <navbar></navbar>
+  <div class="dashboard-wrapper">
+    <div class="info-wrapper section">
+      <div class="info">
+        <h1>Welcome back, {{name}}</h1>
+        <p>Here you will find a short resume of your graphs.</p>
       </div>
-      <a [routerLink]="['/topSales']">see more</a>
     </div>
-  </div>
-  <div class="histogram-wrapper section">
-    <div class="content">
-      <h2>Clients sales histogram</h2>
-      <div class="chart">
-        <app-bar-chart
-          [barChartData]="barChartData"
-          [barChartLabels]="barChartLabels"
-        ></app-bar-chart>
+    <div class="top-sales-wrapper section">
+      <div class="content">
+        <h2>Top clients sales</h2>
+        <div class="chart">
+          <app-pie-chart [pieChartData]="pieChartData" [pieChartLabels]="pieChartLabels" cutoutPercentage="0">
+          </app-pie-chart>
+        </div>
+        <a [routerLink]="['/topSales']">see more</a>
       </div>
-      <a [routerLink]="['/histogram']">see more</a>
+    </div>
+    <div class="histogram-wrapper section">
+      <div class="content">
+        <h2>Clients sales histogram</h2>
+        <div class="chart">
+          <app-bar-chart [barChartData]="barChartData" [barChartLabels]="barChartLabels"></app-bar-chart>
+        </div>
+        <a [routerLink]="['/histogram']">see more</a>
+      </div>
     </div>
   </div>
 </div>

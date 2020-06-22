@@ -1,133 +1,143 @@
-.dashboard-wrapper {
-  height: 100%;
-  width: 100%;
+.layout-dashboard {
   display: grid;
-  padding: 30px;
-  grid-gap: 30px;
-  grid-template-rows: repeat(2, 1fr);
-  grid-template-columns: 0.7fr 1.3fr;
-  grid-template-areas:
-    "a b"
-    "c c";
+  grid-template-columns: 0.35fr 1.65fr;
+  // background-color: red;
+  height: 100vh;
+  overflow: hidden;
 
-  .section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  .dashboard-wrapper {
+    // background-color: black;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    padding: 30px;
+    grid-gap: 30px;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: 0.7fr 1.3fr;
+    grid-template-areas:
+      "a b"
+      "c c";
 
-  .info-wrapper {
-    grid-area: a;
-
-    .info {
-      border-radius: 10px;
-      background: #5e81f4b6;
-      height: 100%;
-      width: 100%;
+    .section {
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
-      text-align: center;
-
-      p {
-        margin-top: 10px;
-        width: 60%;
-      }
     }
-  }
 
-  .top-sales-wrapper ::ng-deep {
-    grid-area: b;
+    .info-wrapper {
+      grid-area: a;
 
-    .content {
-      border-radius: 10px;
-      background: white;
-      width: 100%;
-      height: 100%;
-      padding: 30px;
-      position: relative;
-
-      h2 {
-        font-size: 20px;
-        color: rgba($color: #000000, $alpha: 0.8);
-      }
-
-      .chart {
-        position: relative;
-        width: 100%;
+      .info {
+        border-radius: 10px;
+        background: #5e81f4b6;
         height: 100%;
-        .bar-chart-wrapper {
-          height: 50%;
-          width: 80%;
-          top: 13%;
-        }
-      }
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
 
-      a {
-        position: absolute;
-        right: 30px;
-        top: 30px;
-        text-decoration: none;
-        outline: none;
-        color: rgba($color: #000000, $alpha: 0.8);
-        cursor: pointer;
-        border: 1px solid black;
-        font-size: 12px;
-        padding: 5px 10px;
-        border-radius: 30px;
-
-        &:hover {
-          background-color: rgba(0, 0, 0, 0.02);
+        p {
+          margin-top: 10px;
+          width: 60%;
         }
       }
     }
-  }
 
-  .histogram-wrapper ::ng-deep {
-    grid-area: c;
+    .top-sales-wrapper ::ng-deep {
+      grid-area: b;
 
-    .content {
-      border-radius: 10px;
-      background: white;
-      width: 100%;
-      height: 100%;
-      padding: 30px;
-      overflow: hidden;
-      position: relative;
-
-      h2 {
-        font-size: 20px;
-        color: rgba($color: #000000, $alpha: 0.8);
-      }
-
-      .chart {
-        position: relative;
-        padding-top: 50px;
+      .content {
+        border-radius: 10px;
+        background: white;
         width: 100%;
         height: 100%;
+        padding: 30px;
+        position: relative;
 
-        .bar-chart-wrapper {
-          height: 85% !important;
+        h2 {
+          font-size: 20px;
+          color: rgba($color: #000000, $alpha: 0.8);
+        }
+
+        .chart {
+          position: relative;
           width: 100%;
+          height: 100%;
+
+          .bar-chart-wrapper {
+            height: 50%;
+            width: 80%;
+            top: 13%;
+          }
+        }
+
+        a {
+          position: absolute;
+          right: 30px;
+          top: 30px;
+          text-decoration: none;
+          outline: none;
+          color: rgba($color: #000000, $alpha: 0.8);
+          cursor: pointer;
+          border: 1px solid black;
+          font-size: 12px;
+          padding: 5px 10px;
+          border-radius: 30px;
+
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.02);
+          }
         }
       }
+    }
 
-      a {
-        position: absolute;
-        right: 30px;
-        top: 30px;
-        text-decoration: none;
-        outline: none;
-        color: rgba($color: #000000, $alpha: 0.8);
-        cursor: pointer;
-        border: 1px solid black;
-        font-size: 12px;
-        padding: 5px 10px;
-        border-radius: 30px;
+    .histogram-wrapper ::ng-deep {
+      grid-area: c;
 
-        &:hover {
-          background-color: rgba(0, 0, 0, 0.02);
+      .content {
+        border-radius: 10px;
+        background: white;
+        width: 100%;
+        height: 100%;
+        padding: 30px;
+        overflow: hidden;
+        position: relative;
+
+        h2 {
+          font-size: 20px;
+          color: rgba($color: #000000, $alpha: 0.8);
+        }
+
+        .chart {
+          position: relative;
+          padding-top: 50px;
+          width: 100%;
+          height: 100%;
+
+          .bar-chart-wrapper {
+            height: 85% !important;
+            width: 100%;
+          }
+        }
+
+        a {
+          position: absolute;
+          right: 30px;
+          top: 30px;
+          text-decoration: none;
+          outline: none;
+          color: rgba($color: #000000, $alpha: 0.8);
+          cursor: pointer;
+          border: 1px solid black;
+          font-size: 12px;
+          padding: 5px 10px;
+          border-radius: 30px;
+
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.02);
+          }
         }
       }
     }

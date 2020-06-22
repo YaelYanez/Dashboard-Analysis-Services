@@ -39,7 +39,6 @@ export class AuthService {
       if (tokenExpDate.valueOf() > new Date().valueOf()) {
         return true;
       }
-      console.log('Token EXPIRED');
     }
     return false;
   }
