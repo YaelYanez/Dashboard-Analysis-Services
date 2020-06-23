@@ -1,0 +1,17 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="wrapper-login fadeInDown">
+  <div id="formContent">
+    <form>
+      <input type="text" class="fadeIn second" placeholder="Email" #email>
+      <input type="password" class="fadeIn third" placeholder="Password" #password>
+      <input type="submit" class="loginButton" value="login" (click)="Login(email.value, password.value)">
+      <p>
+        {{msg1}}
+      </p>
+    </form>
+  </div>
+</div>

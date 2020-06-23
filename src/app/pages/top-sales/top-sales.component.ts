@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Label } from 'ng2-charts';
 import { NorthwindService } from 'src/app/services/northwind.service';
 import * as helpers from '../../helpers/helpers';
+import * as jwt_decode from 'jwt-decode';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'top-sales-page',
@@ -9,7 +11,7 @@ import * as helpers from '../../helpers/helpers';
   styleUrls: ['./top-sales.component.scss'],
 })
 export class TopSalesPage implements OnInit {
-  constructor(private north: NorthwindService) {}
+  constructor(private north: NorthwindService, private router: Router) {}
 
   helpers = helpers;
 
@@ -32,7 +34,19 @@ export class TopSalesPage implements OnInit {
 
   allData: object[] = new Array<object>();
 
+  verifyAccessToSales() {
+    const token = localStorage.getItem('token');
+    const decoded = jwt_decode(token);
+    //@ts-ignore
+    if (decoded.rol[0] != 'ALL') {
+      //@ts-ignore
+      if (decoded.rol[0] != 'TOP') {
+        this.router.navigate(['./histogram']);
+      }
+    }
+  }
   async ngOnInit() {
+    this.verifyAccessToSales();
     this.dimensions = await this.north.getDimensions();
     this.years = await this.north.getDimensionYears();
     this.months = await this.north.getDimensionYearsMonths();

@@ -30,3 +30,4 @@ export const fromNumberToMoney = (number: number): string => {
 
   return formatter.format(number);
 };
+

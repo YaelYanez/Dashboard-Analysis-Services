@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import * as jwt_decode from 'jwt-decode'
 
 @Component({
   selector: 'navbar',
@@ -6,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  constructor() {}
+  constructor(public _router:Router) {}
+  name : string = "";
+  ngOnInit(): void {
+  }
 
-  ngOnInit(): void {}
+  Logout(){
+    localStorage.setItem('token','');
+    localStorage.setItem('loginStatus', 'false');
+    this._router.navigate(['login'])
+  }
 }

@@ -14,9 +14,12 @@ import { FormsModule } from '@angular/forms';
 import { MultiSelectComponent } from './components/selects/multi-select/multi-select.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { LoginComponent } from './pages/login/login.component';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
+    LoginComponent,
     AppComponent,
     HistogramPage,
     TopSalesPage,
@@ -26,6 +29,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     NotFoundComponent,
     MultiSelectComponent,
     DashboardComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     NgSelectModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
