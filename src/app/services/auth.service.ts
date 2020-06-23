@@ -9,7 +9,7 @@ const URL_API = environment.API.EndPoint.Login;
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   login = (body: { username: string; password: string }): Promise<object> => {
     return new Promise((resolve) => {

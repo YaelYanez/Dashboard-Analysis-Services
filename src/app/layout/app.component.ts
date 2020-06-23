@@ -10,9 +10,11 @@ export class AppComponent {
   title = 'cube-dashboard-Parcial2do';
   loginStatus: boolean = (localStorage.getItem('loginStatus') == "true") ? true : false;
 
-  ngOnInit(): void{
-    localStorage.setItem('loginStatus', 'false');
-    localStorage.setItem('token', '');
+  ngOnInit(): void {
+    if (localStorage.getItem('token').length === 0) {
+      localStorage.setItem('loginStatus', 'false');
+      localStorage.setItem('token', '');
+    }
   }
 }
 
